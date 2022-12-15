@@ -14,9 +14,11 @@ const Button = (props) => {
     recipeback,
     addComment,
     commentdel,
+    home,
   } = props;
   return (
     <StButton
+      home={home}
       add={add}
       back={back}
       view={view}
@@ -36,6 +38,22 @@ const Button = (props) => {
 
 const StButton = styled.button`
   cursor: pointer;
+  ${(props) =>
+    props.home &&
+    css`
+      padding: 10px 30px;
+      font-size: 20px;
+      border-radius: 20px;
+      background-color: #7ec1e0;
+      border: 0;
+      color: black;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: #d3e2e9;
+        box-shadow: 1px 1px 4px 0px gray;
+      }
+    `}
   ${(props) =>
     props.add &&
     css`
@@ -75,7 +93,7 @@ const StButton = styled.button`
       background-color: transparent;
       border: none;
       transition: 0.2s;
-      margin-bottom: 0.5rem;
+      /* margin-bottom: 0.5rem; */
       border-radius: 30px;
       margin-bottom: 15px;
       &:hover {
