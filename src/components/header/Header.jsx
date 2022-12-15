@@ -23,6 +23,7 @@ const StDiv = styled.div`
   align-items: center;
   padding: 0px 20px;
   margin: 14px 0;
+  font-family: "Kalam", cursive;
 `;
 
 const StSpan = styled.span`

@@ -1,19 +1,98 @@
 {
-  "posts": [
+  "recipes": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "테서터???",
+      "imgurl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
+      "recipe": "테서터 컴포넌트 테스트",
+      "id": 2100,
+      "count": 7
+    },
+    {
+      "title": "테스트해봅니다",
+      "imgurl": "https://t1.daumcdn.net/cfile/tistory/24457C4F58663DD011",
+      "recipe": "테스트해봅니다??????",
+      "id": 8507,
+      "count": 2
+    },
+    {
+      "title": "피자pizza",
+      "imgurl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+      "recipe": "팔자피자",
+      "id": 3554,
+      "count": 8
+    },
+    {
+      "title": "김치찌개",
+      "imgurl": "https://ppss.kr/wp-content/uploads/2019/08/0-87.jpg",
+      "recipe": "1. 김치를 썬다\n2. 김치를 볶는다\n3. 스팸을 넣는다\n4. 물을 넣는다\n5. 찬에게 맡긴다",
+
+      "id": 2980,
+      "count": 9
     }
   ],
-  "comments": [
+  "reviews": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "보관은 어떻게 하는게 좋나요?",
+      "id": 6
+    },
+    {
+      "title": "맛있겠네용!!!!!!!",
+      "id": 7
+    },
+    {
+      "title": "손질방법알려주세용",
+      "id": 8
+    },
+    {
+      "title": "저건 얼마에팔릴까",
+      "id": 9
+    },
+    {
+      "title": "냉동해도 상관없나요?",
+      "id": 10
+    },
+    {
+      "title": "오류뜨지말라",
+      "id": 11
+    },
+    {
+      "title": "병합충돌 뜨지말ㄹ라ㅏㅏ라라라라라라",
+      "id": 12
+    },
+    {
+      "title": "인풋초기화테스트",
+      "id": 91695,
+      "postId": "8507"
+    },
+    {
+      "title": "제발 되어 주겠니?",
+      "id": 11408,
+      "postId": "8507"
+    },
+    {
+      "title": "제발 되어 주겠니?,....",
+      "id": 19730,
+      "postId": "8507"
+    },
+    {
+      "title": "테스트",
+      "id": 14022,
+      "postId": "3554"
+    },
+    {
+      "title": "다시",
+      "id": 40549,
+      "postId": "3554"
+    },
+    {
+      "title": "새로고침좀되라",
+      "id": 19431,
+      "postId": "3554"
+    },
+    {
+      "title": "새로고침 ㅠㅠ",
+      "id": 29600,
+      "postId": "3554"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

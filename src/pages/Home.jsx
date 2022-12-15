@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
+import Button from "../components/button/Button";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,7 +9,9 @@ const Home = () => {
   return (
     <StDiv background>
       <StDiv>
-        <StButton onClick={linkGo}>Go to Food-ing</StButton>
+        <Button home onClick={linkGo}>
+          Go to Food-ing
+        </Button>
       </StDiv>
     </StDiv>
   );
@@ -19,7 +22,7 @@ const StDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 82.5vh;
   ${(props) =>
     props.background &&
     css`
@@ -28,18 +31,6 @@ const StDiv = styled.div`
       background-size: cover;
       opacity: 60%;
     `}
-`;
-
-const StButton = styled.button`
-  padding: 10px 30px;
-  font-size: 20px;
-  border-radius: 20px;
-  background-color: #b8dced;
-  /* border: 2px solid black; */
-  cursor: pointer;
-  border: 0;
-  color: #003751;
-  font-weight: bold;
 `;
 
 export default Home;
