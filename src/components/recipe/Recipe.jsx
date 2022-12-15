@@ -19,7 +19,7 @@ const Recipe = () => {
   //console.log(recipes, param.id);
   //////////////리뷰///////////////////
   const { state } = useLocation;
-  console.log(state, "state");
+  // console.log(state, "state");
   const [review, setReview] = useState({
     title: "",
   });
