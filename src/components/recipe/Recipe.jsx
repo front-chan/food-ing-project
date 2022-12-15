@@ -1,7 +1,7 @@
 //import React, { useEffect } from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import { apis } from "../../lib/axios";
@@ -18,8 +18,8 @@ const Recipe = () => {
   // );
   //console.log(recipes, param.id);
   //////////////리뷰///////////////////
-  const { state } = useLocation;
-  console.log(state, "state");
+  // const { state } = useLocation;
+  // console.log(state, "state");
   const [review, setReview] = useState({
     title: "",
   });
@@ -33,7 +33,7 @@ const Recipe = () => {
         setRecipes(get);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [param.id]);
   /*
@@ -49,7 +49,7 @@ const Recipe = () => {
   }, []);
   */
 
-  console.log(recipes);
+  // console.log(recipes);
 
   // recipe 전체 삭제 핸들러 apis instance 버전
   const onDeleteRecipe = (recipeId) => {
@@ -59,12 +59,12 @@ const Recipe = () => {
         // window.location.href = "/lists";
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const [reviews, setReviews] = useState(null);
-  console.log("reviews: ", reviews);
+  // console.log("reviews: ", reviews);
 
   useEffect(() => {
     apis

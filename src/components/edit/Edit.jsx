@@ -11,7 +11,7 @@ const Edit = () => {
   const [editRecipe, setEditRecipe] = useState({});
 
   const [recipes, setRecipes] = useState([]);
-  console.log("recipes: ", recipes);
+  // console.log("recipes: ", recipes);
 
   /*
   // 코드복사 12~15까지 기본 axios 버전
@@ -50,7 +50,7 @@ const Edit = () => {
         setRecipes(get);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [param.id]);
 
@@ -62,7 +62,7 @@ const Edit = () => {
         //   window.location.href = "/lists";
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
