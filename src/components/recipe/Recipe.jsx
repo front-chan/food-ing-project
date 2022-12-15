@@ -1,7 +1,7 @@
 //import React, { useEffect } from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import { apis } from "../../lib/axios";
@@ -18,7 +18,7 @@ const Recipe = () => {
   // );
   //console.log(recipes, param.id);
   //////////////리뷰///////////////////
-  const { state } = useLocation;
+  // const { state } = useLocation;
   // console.log(state, "state");
   const [review, setReview] = useState({
     title: "",
