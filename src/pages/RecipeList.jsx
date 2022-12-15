@@ -11,7 +11,9 @@ const RecipeList = () => {
   // console.log(recipes);
 
   const fetchRecipes = async () => {
-    const { data } = await axios.get("http://localhost:3005/recipes");
+    const { data } = await axios.get(
+      "https://demo-server-test.vercel.app/recipes"
+    );
     setRecipes(data);
   };
 
