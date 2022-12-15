@@ -33,7 +33,7 @@ const Recipe = () => {
         setRecipes(get);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [param.id]);
   /*
@@ -49,7 +49,7 @@ const Recipe = () => {
   }, []);
   */
 
-  console.log(recipes);
+  // console.log(recipes);
 
   // recipe 전체 삭제 핸들러 apis instance 버전
   const onDeleteRecipe = (recipeId) => {
@@ -59,12 +59,12 @@ const Recipe = () => {
         // window.location.href = "/lists";
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const [reviews, setReviews] = useState(null);
-  console.log("reviews: ", reviews);
+  // console.log("reviews: ", reviews);
 
   useEffect(() => {
     apis
@@ -255,10 +255,6 @@ const StDialogHeader = styled.div`
   border-radius: 20px;
   height: 60px;
   justify-content: space-between;
-<<<<<<< HEAD
-  background-color: #c0e9fc;
-=======
->>>>>>> 958c67dc2aa037b068872b6815b335fc16c11d98
   padding: 0 24px;
   align-items: center;
 `;

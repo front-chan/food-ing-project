@@ -10,25 +10,25 @@ const List = ({ recipelist }) => {
   const navigate = useNavigate();
   const { title, imgurl, recipe, id, count } = recipelist;
   // list id 넘겨오기
-  console.log(id);
+  // console.log(id);
   const [like, setLike] = useState(count);
 
   // const count = useSelector((state) => state.counter.number);
-  console.log("count: ", count);
+  // console.log("count: ", count);
   // console.log("like: ", like);
 
   const onClickHeartHandler = (id) => {
     // setLike(like + 1);
-    console.log("like:", like);
+    // console.log("like:", like);
     const recipeLike = { title, imgurl, recipe, count: like };
     apis
       .editRecipes(id, recipeLike)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLike(like + 1);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

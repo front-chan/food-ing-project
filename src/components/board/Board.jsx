@@ -23,7 +23,7 @@ const Board = () => {
     count: 0,
   });
   const [recipes, setRecipes] = useState([]);
-  console.log("recipes: ", recipes);
+  // console.log("recipes: ", recipes);
 
   // const { data } = dispatch(__getRecipes());
   // console.log("BoardData: ", data);
@@ -39,7 +39,7 @@ const Board = () => {
         setRecipes(get);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
@@ -54,7 +54,7 @@ const Board = () => {
         // setRecipes([...recipes, recipe]);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 
     // axios.post("http://localhost:3000/recipes", recipe);
