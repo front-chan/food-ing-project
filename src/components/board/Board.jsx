@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { apis } from "../../lib/axios";
 import Button from "../button/Button";
-// import Form from "../form/Form";
-// import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import { apis, __getRecipes } from "../../redux/modules/recipeSlice";
-// import { addRecipe } from "../../redux/modules/recipeSlice";
-// import { postCreators } from "../../redux/modules/recipeSlice";
+import { useDispatch } from "react-redux";
+import { __addRecipe } from "../../redux/modules/recipeSlice";
 
 const Board = () => {
-  // const dispatch = useDispatch();
-  // const list = useSelector((state) => state);
-  // console.log("list: ", list);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [recipe, setRecipe] = useState({
     title: "",
@@ -22,86 +15,12 @@ const Board = () => {
     recipe: "",
     count: 0,
   });
-  const [recipes, setRecipes] = useState([]);
-  // console.log("recipes: ", recipes);
-
-  // const { data } = dispatch(__getRecipes());
-  // console.log("BoardData: ", data);
-  // const recipes = useSelector((state) => state);
-  // console.log("recipes: ".recipes);
-
-  // 데이터 처음 한번만 가져오기
-  useEffect(() => {
-    apis
-      .getRecipes()
-      .then((res) => {
-        const get = res.data;
-        setRecipes(get);
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-  }, []);
 
   const onSubmitHandler = (recipe) => {
-    apis
-      .createRecipes(recipe)
-      .then((res) => {
-        // window.location.href = "/lists";
-        // console.log("test res: ", res);
-        // console.log("test recipe: ", recipe);
-        // dispatch(addRecipe([...recipe, res]));
-        // setRecipes([...recipes, recipe]);
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-
-    // axios.post("http://localhost:3000/recipes", recipe);
-    // setRecipes([...recipes, recipe]);
-    // try {
-    //   // 새로고침 되었을 때 경로 이동
-    //   window.location.href = "/lists";
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    dispatch(__addRecipe(recipe));
   };
-
-  /*
-  useEffect(() => {
-    dispatch(__getRecipes());
-  }, [dispatch]);
-*/
-  /*
-  // 코드복사 12~15까지
-  const fetchRecipes = async () => {
-    const { data } = await axios.get("http://localhost:3000/recipes");
-    setRecipes(data);
-  };
-
-  const onSubmitHandler = (recipe) => {
-    axios.post("http://localhost:3000/recipes", recipe);
-    setRecipes([...recipes, recipe]);
-    try {
-      // 새로고침 되었을 때 경로 이동
-      window.location.href = "/lists";
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // 코드복사 26~27까지
-  useEffect(() => {
-    fetchRecipes();
-  }, []);
-*/
 
   return (
-    // <Form
-    //   onSubmitHandler={onSubmitHandler}
-    //   recipe={recipe}
-    //   setRecipe={setRecipe}
-    // ></Form>
     <StDiv>
       <StForm
         onSubmit={(e) => {
@@ -176,16 +95,6 @@ const Board = () => {
           </Button>
           {/* </Link> */}
         </div>
-        {/* <div>
-        {recipes.map((recipe) => (
-          <div key={recipe.id}>
-            <p>{recipe.id}</p>
-            <h1>{recipe.title}</h1>
-            <h3>{recipe.recipe}</h3>
-            <img src={recipe.imgurl} alt="이미지" />
-          </div>
-        ))}
-      </div> */}
       </StForm>
     </StDiv>
   );

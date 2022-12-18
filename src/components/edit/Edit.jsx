@@ -1,45 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import { Link } from "react-router-dom";
 import { apis } from "../../lib/axios";
 import Button from "../button/Button";
+import { __editRecipe } from "../../redux/modules/recipeSlice";
 
 const Edit = () => {
+  const dispatch = useDispatch;
   const param = useParams();
   const navigate = useNavigate();
   const [editRecipe, setEditRecipe] = useState({});
 
   const [recipes, setRecipes] = useState([]);
-  // console.log("recipes: ", recipes);
-
-  /*
-  // 코드복사 12~15까지 기본 axios 버전
-  const fetchRecipes = async () => {
-    const { data } = await axios.get(
-      `http://localhost:3000/recipes/${param.id}`
-    );
-    setRecipes(data);
-  };
-  */
-
-  /*
-  // id값에 따라 불러오기
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      await axios
-        .get(`http://localhost:3000/recipes/${param.id}`)
-        .then(function (res) {
-          console.log("res: ", res.data);
-          setRecipes(res.data);
-        })
-        .catch(function (error) {
-          console.log("error: ", error);
-        });
-    };
-    fetchRecipes();
-  }, [param.id]);
-  */
+  console.log("recipes: ", recipes);
 
   // id값에 따라 불러오기
   useEffect(() => {
@@ -56,43 +31,16 @@ const Edit = () => {
 
   // 수정하기 핸들러 apis instance 버전
   const onEditRecipe = (id, recipe) => {
-    apis
-      .editRecipes(id, recipe)
-      .then((res) => {
-        //   window.location.href = "/lists";
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
+    dispatch(__editRecipe([id, recipe]));
+    // apis
+    //   .editRecipes(id, recipe)
+    //   .then((res) => {
+    //     //   window.location.href = "/lists";
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err);
+    //   });
   };
-
-  /*
-  // axios 수정하기 버전
-  const onSubmitHandler = (edit) => {
-    axios
-      .patch(`http://localhost:3000/recipes/${param.id}`, edit)
-      .then((res) => {
-        console.log("res: ", res);
-        console.log("editRecipe: ", editRecipe);
-        window.location.href = "/lists";
-        // fetchRecipes()
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  */
-
-  /*
-    // setRecipes([...recipes, recipe]);
-    try {
-      // 새로고침 되었을 때 경로 이동
-      window.location.href = "/lists"; // 수정된 페이지로 이동
-    } catch (error) {
-      console.log(error);
-    }
-  };
-*/
 
   return (
     <StDiv>
@@ -150,7 +98,7 @@ const Edit = () => {
             onClick={(e) => {
               e.preventDefault();
               // onSubmitHandler(editRecipe);
-              onEditRecipe(param.id, editRecipe);
+              onEditRecipe([param.id, editRecipe]);
               navigate("/lists");
             }}
           >

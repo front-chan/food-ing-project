@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://demo-server-test.vercel.app/",
+  baseURL: "http://localhost:3002/",
   header: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",

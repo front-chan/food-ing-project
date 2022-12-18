@@ -1,126 +1,90 @@
-//import React, { useEffect } from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-import { apis } from "../../lib/axios";
+import { useSelector, useDispatch } from "react-redux";
+// import { apis } from "../../lib/axios";
 import { HiHeart } from "react-icons/hi";
 import Button from "../button/Button";
+import { __getRecipe, __deleteRecipe } from "../../redux/modules/recipeSlice";
+import {
+  __addReviews,
+  __getReviews,
+  __deleteReviews,
+} from "../../redux/modules/reviewSlice";
 
 const Recipe = () => {
   //////////////레시피///////////////////
   const navigate = useNavigate();
   const param = useParams();
-  // const recipes = useSelector((state) => state.recipes.recipes);
-  // const getRecipeContent = recipes.filter(
-  //   (recipes) => recipes.id === parseInt(param.id)
-  // );
-  //console.log(recipes, param.id);
-  //////////////리뷰///////////////////
-  // const { state } = useLocation;
-  // console.log(state, "state");
+  console.log("param.id: ", param.id);
+  const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes.recipes);
+  console.log("recipes: ", recipes);
+
+  const reviews = useSelector((state) => state.reviews.reviews);
+  console.log("reviews:", reviews);
+
+  const recipeList = recipes?.find(
+    (recipe) => Number(recipe.id) === Number(param.id)
+  );
+  console.log("recipeList: ", recipeList);
+  // const r = recipes[recipeList];
+  // console.log("r: ", r);
   const [review, setReview] = useState({
     title: "",
   });
-  const [recipes, setRecipes] = useState([]);
+  // const [recipes, setRecipes] = useState([]);
 
-  useEffect(() => {
-    apis
-      .getIdRecipes(param.id)
-      .then((res) => {
-        const get = res.data;
-        setRecipes(get);
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-  }, [param.id]);
-  /*
-  const fetchRecipes = async () => {
-    const { data } = await axios.get(
-      `http://localhost:3005/recipes/${param.id}`
-    );
-    setRecipes(data);
-  };
-  // console.log(param.id, "param.id");
-  useEffect(() => {
-    fetchRecipes();
-  }, []);
-  */
-
-  // console.log(recipes);
+  // useEffect(() => {
+  //   const recipeList = recipes?.find(
+  //     (recipe) => recipe.id === Number(param.id)
+  //   );
+  //   console.log("recipeList: ", recipeList);
+  //   // id값에 맞는 데이터 불러오기
+  //   // dispatch(__getRecipe());
+  //   // id값에 맞는 reivew값 불러오기
+  //   // dispatch(__getReviews(+param.id));
+  // }, []);
 
   // recipe 전체 삭제 핸들러 apis instance 버전
   const onDeleteRecipe = (recipeId) => {
-    apis
-      .deleteRecipes(recipeId)
-      .then((res) => {
-        // window.location.href = "/lists";
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
+    dispatch(__deleteRecipe(recipeId));
   };
 
-  const [reviews, setReviews] = useState(null);
+  // const [reviews, setReviews] = useState(null);
   // console.log("reviews: ", reviews);
 
   useEffect(() => {
-    apis
-      .getReviews(param.id)
-      .then((res) => {
-        const get = res.data;
-        setReviews(get);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [param.id]);
-
-  /*
-  const fetchReviews = async () => {
-    const { data } = await axios.get(
-      `http://localhost:3005/reviews?postId=${param.id}`
-    );
-    setReviews(data);
-  };
-  */
+    dispatch(__getRecipe());
+    dispatch(__getReviews(Number(param.id)));
+  }, [param.id, dispatch]);
 
   const onSubmitHandler = (review) => {
-    apis
-      .createReiews(review)
-      .then((res) => {
-        setReviews([...reviews, review]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // axios.post("http://localhost:3005/reviews/", review);
-    // setReviews([...reviews, review]);
+    dispatch(__addReviews(review));
+    // 새로고침이 안됨 렌더링 안됨
+    // apis
+    //   .createReiews(review)
+    //   .then((res) => {
+    //     // setReviews([...reviews, review]);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const onClickDeleteButtonHandler = (reviewId) => {
-    apis
-      .deleteReviews(reviewId)
-      .then((res) => {
-        const newReview = reviews?.filter((review) => review.id !== reviewId);
-        setReviews(newReview);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // axios.delete(`http://localhost:3005/reviews/${reviewId}`);
-    // const newReview = reviews?.filter((review) => review.id !== reviewId);
-    // setReviews(newReview);
+    dispatch(__deleteReviews(reviewId));
+    // apis
+    //   .deleteReviews(reviewId)
+    //   .then((res) => {
+    //     const newReview = reviews?.filter((review) => review.id !== reviewId);
+    //     // setReviews(newReview);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
-  /*
-  useEffect(() => {
-    fetchReviews();
-  }, []);
-  */
-  /////////////////리뷰 끝////////////////////
   return (
     <StContainer>
       <StDialog>
@@ -132,7 +96,7 @@ const Recipe = () => {
                 alignItems: "center",
               }}
             >
-              <div>ID : {recipes.id}</div>
+              <div>ID : {recipeList?.id}</div>
               <Button
                 recipedel
                 borderColor="#1195bd"
@@ -168,14 +132,14 @@ const Recipe = () => {
             </div>
           </StDialogHeader>
           <StDiv>
-            <StTitle>{recipes.title}</StTitle>
+            <StTitle>{recipeList?.title}</StTitle>
             <HiHeart style={{ color: "#5c94b6", cursor: "pointer" }}></HiHeart>
-            <p>{recipes.count}</p>
+            <p>{recipeList?.count}</p>
           </StDiv>
           <StBody>
-            <StLeftBox src={recipes.imgurl}></StLeftBox>
+            <StLeftBox src={recipeList?.imgurl}></StLeftBox>
             <StRightBox>
-              <StP>{recipes.recipe}</StP>
+              <StP>{recipeList?.recipe}</StP>
             </StRightBox>
           </StBody>
         </div>
@@ -205,7 +169,7 @@ const Recipe = () => {
           </form>
 
           <CommentMarkBox>
-            {reviews?.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id}>
                 {review.id} :{review.title}
                 &nbsp;&nbsp;&nbsp;&nbsp;

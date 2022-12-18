@@ -1,32 +1,29 @@
 import styled from "styled-components";
 import List from "../components/list/List";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import Button from "../components/button/Button";
+import { __getRecipe } from "../redux/modules/recipeSlice";
 
 const RecipeList = () => {
   const navigate = useNavigate();
-  const [recipes, setRecipes] = useState([]);
-  // console.log(recipes);
+  const dispatch = useDispatch();
 
-  const fetchRecipes = async () => {
-    const { data } = await axios.get(
-      "https://demo-server-test.vercel.app/recipes"
-    );
-    setRecipes(data);
-  };
+  const recipeList = useSelector((state) => state.recipes.recipes);
+  console.log("recipeList: ", recipeList);
 
   useEffect(() => {
-    fetchRecipes();
-  }, []);
+    dispatch(__getRecipe());
+    console.log("hi");
+  }, [dispatch]);
 
   return (
     <div>
       <Stimg>
         <Wrapimg>
           <Title>
-            <h1> Recipe Community</h1>
+            <h1>Recipe Community</h1>
           </Title>
           <Nbutton>
             <Button
@@ -40,8 +37,8 @@ const RecipeList = () => {
           </Nbutton>
 
           <Card>
-            {recipes.map((recipe) => (
-              <List key={recipe.id} recipelist={recipe} />
+            {recipeList.map((recipe) => (
+              <List key={recipe.id} recipes={recipe} />
             ))}
           </Card>
         </Wrapimg>
