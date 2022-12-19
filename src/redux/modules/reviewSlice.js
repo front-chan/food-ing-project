@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { apis } from "../../lib/axios";
-import axios from "axios";
+import { apis } from "../../lib/axios";
+// import axios from "axios";
 //import { createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   recipes: [],
@@ -14,9 +14,10 @@ export const __getReviews = createAsyncThunk(
   "getReviews",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(
-        `http://localhost:3002/reviews?postId=${payload}`
-      );
+      const data = await apis.getReviews(payload);
+      //   const data = await axios.get(
+      //     `http://localhost:3002/reviews?postId=${payload}`
+      //   );
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       // const getId = data.data.filter((review) => review.postId === payload);
@@ -33,7 +34,8 @@ export const __addReviews = createAsyncThunk(
   "addReviews",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post(`http://localhost:3002/reviews`, payload);
+      const data = await apis.createReviews(payload);
+      //   const data = await axios.post(`http://localhost:3002/reviews`, payload);
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       // const getId = data.data.filter((review) => review.postId === payload);
@@ -50,9 +52,10 @@ export const __deleteReviews = createAsyncThunk(
   "deleteReviews",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(
-        `http://localhost:3002/reviews/${payload}`
-      );
+      const data = await apis.deleteReviews(payload);
+      //   const data = await axios.delete(
+      //     `http://localhost:3002/reviews/${payload}`
+      //   );
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       return thunkAPI.fulfillWithValue(payload);

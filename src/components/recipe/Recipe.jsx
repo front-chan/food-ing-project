@@ -32,6 +32,7 @@ const Recipe = () => {
   // console.log("r: ", r);
   const [review, setReview] = useState({
     title: "",
+    postId: param.id,
   });
   // const [recipes, setRecipes] = useState([]);
 
@@ -61,6 +62,7 @@ const Recipe = () => {
 
   const onSubmitHandler = (review) => {
     dispatch(__addReviews(review));
+    // setReview("");
     // 새로고침이 안됨 렌더링 안됨
     // apis
     //   .createReiews(review)
@@ -155,6 +157,7 @@ const Recipe = () => {
             <StCommentFunction
               type="text"
               placeholder="코멘트를 입력하세요."
+              // value={review}
               onChange={(ev) => {
                 const { value } = ev.target;
                 setReview({

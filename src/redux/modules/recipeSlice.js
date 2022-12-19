@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { apis } from "../../lib/axios";
-import axios from "axios";
+import { apis } from "../../lib/axios";
+// import axios from "axios";
 //import { createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   recipes: [],
@@ -14,7 +14,8 @@ export const __getRecipe = createAsyncThunk(
   "getRecipe",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3002/recipes");
+      const data = await apis.getRecipes();
+      // axios.get("http://localhost:3002/recipes");
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       return thunkAPI.fulfillWithValue(data.data);
@@ -25,12 +26,13 @@ export const __getRecipe = createAsyncThunk(
   }
 );
 
-// 해당 아이디 값 데이터 불러오기 (안먹힘 필요없음)
+// 해당 아이디 값 데이터 불러오기 (안먹힘....)
 export const __getIdRecipe = createAsyncThunk(
   "getIdRecipe",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`http://localhost:3002/recipes/${payload}`);
+      const data = await apis.getIdRecipes(payload);
+      // const data = await axios.get(`http://localhost:3002/recipes/${payload}`);
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       // const getId = data.data.filter((recipe) => recipe.id === payload)[0];
@@ -47,7 +49,8 @@ export const __addRecipe = createAsyncThunk(
   "addRecipe",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post("http://localhost:3002/recipes", payload);
+      const data = await apis.createRecipes(payload);
+      // const data = await axios.post("http://localhost:3002/recipes", payload);
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       return thunkAPI.fulfillWithValue(data.data);
@@ -63,9 +66,10 @@ export const __deleteRecipe = createAsyncThunk(
   "deleteRecipe",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(
-        `http://localhost:3002/recipes/${payload}`
-      );
+      const data = await apis.deleteRecipes(payload);
+      // const data = await axios.delete(
+      //   `http://localhost:3002/recipes/${payload}`
+      // );
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       return thunkAPI.fulfillWithValue(payload);
@@ -76,16 +80,17 @@ export const __deleteRecipe = createAsyncThunk(
   }
 );
 
-// 데이터 수정
+// 데이터 수정 (안먹힘...)
 export const __editRecipe = createAsyncThunk(
   "editRecipe",
   async (payload, thunkAPI) => {
     try {
       const [recipeId, recipe] = payload;
-      const data = await axios.patch(
-        `http://localhost:3002/recipes/${recipeId}`,
-        recipe
-      );
+      const data = await apis.editRecipes(recipeId, recipe);
+      // const data = await axios.patch(
+      //   `http://localhost:3002/recipes/${recipeId}`,
+      //   recipe
+      // );
       console.log("payload: ", payload);
       console.log("data: ", data.data);
       return thunkAPI.fulfillWithValue(payload);

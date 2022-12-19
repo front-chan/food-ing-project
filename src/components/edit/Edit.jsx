@@ -5,7 +5,7 @@ import styled from "styled-components";
 // import { Link } from "react-router-dom";
 import { apis } from "../../lib/axios";
 import Button from "../button/Button";
-import { __editRecipe } from "../../redux/modules/recipeSlice";
+import { __editRecipe, __getIdRecipe } from "../../redux/modules/recipeSlice";
 
 const Edit = () => {
   const dispatch = useDispatch;
@@ -18,6 +18,7 @@ const Edit = () => {
 
   // id값에 따라 불러오기
   useEffect(() => {
+    // dispatch(__getIdRecipe(param.id));
     apis
       .getIdRecipes(param.id)
       .then((res) => {
@@ -27,7 +28,7 @@ const Edit = () => {
       .catch((err) => {
         // console.log(err);
       });
-  }, [param.id]);
+  }, [dispatch, param.id]);
 
   // 수정하기 핸들러 apis instance 버전
   const onEditRecipe = (id, recipe) => {
